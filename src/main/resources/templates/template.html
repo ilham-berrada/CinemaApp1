@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<title>template</title>
+<link rel="stylesheet" href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css"/>
+<script>src="/webjars/jquery/3.0.0/jquery.min.js"</script>
+<script>src="/webjars/bootstrap/4.1.0/js/bootstrap.min.js"</script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">CINEMA</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+    <li class="nav-item active">
+      <a class="nav-link" href="http://localhost:4200">Home</a>
+    </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://localhost:8080/categorie">Categorie</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://localhost:8080/cinema">Cinema</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://localhost:8080/film">Film</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://localhost:8080/projection">Projection</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://localhost:8080/salle">Salle</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://localhost:8080/Ville">Ville</a>
+      </li>
+
+    </ul>
+    <ul class="navbar-nav ml-auto">
+ 	<li class="nav-item ">
+      <a sec:.authorize="isAuthenticated()" class="nav-link" th:href="@{logout}">Logout</a>
+    </li>
+    </ul>
+    
+    
+  </div>
+</nav>
+<section layout:fragment="pageContent">
+
+</body>
+</html>

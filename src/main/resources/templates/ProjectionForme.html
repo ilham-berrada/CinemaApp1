@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+layout:decorator="template.html"
+>
+
+<body>
+<section layout:fragment="pageContent">
+
+<div class="m-5">
+<div class="card">
+<div class="card-header" th:if="${projection.id_projection}==null">Ajouter Un Nouveau Cinema</div>
+<div class="card-header" th:if="${projection.id_projection}!=null">Modifier le Cinema</div>
+<div class="card-body">
+<form th:action="@{/addProjection}" method="post">
+<div class="form-group">
+<label class="control-label">ID:</label>
+<label class="control-label" th:text="${projection.id_projection}" >ID:</label>
+<input type="hidden" name="id" th:value="${projection.id_projection}" class="form-control">
+<span class="text-danger" th:errors=${projection.id_projection}></span>
+</div>
+<div class="form-group">
+<label class="control-label">Date de Projection:</label>
+<input type="date" name="dateprojection" th:value="${projection.dateprojection}" class="form-control">
+<span class="text-danger" th:errors=${projection.dateprojection}></span>
+</div>
+<div class="form-group">
+<label class="control-label">Prix:</label>
+<input type="text" name="prix" th:value="${projection.prix}" class="form-control">
+<span class="text-danger" th:errors=${projection.prix}></span>
+</div>
+							<div class="form-group">
+								<label class="control-label">Seance:</label> 
+								<select name="seance" class="form-control btn btn-info">
+									<option th:each="s:${seances}" th:text="${s.heurdebut}" class="form-control" th:value="${s.id_seance}"
+									th:selected="${projection.seance.heurdebut}" th:if="${mode=='edit'}"></option>
+									<option th:each="s:${seances}" th:text="${s.heurdebut}" class="form-control" th:value="${s.id_seance}"
+									 th:if="${mode!='edit'}"></option>					
+								</select>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Film:</label> 
+								<select name="film" class="form-control btn btn-info">
+									<option th:each="f:${films}" th:text="${f.titre}" class="form-control" th:value="${f.id_film}"
+									th:selected="${projection.film.titre}" th:if="${mode=='edit'}"></option>
+									<option th:each="f:${films}" th:text="${f.titre}" class="form-control" th:value="${f.id_film}"
+									 th:if="${mode!='edit'}"></option>					
+								</select>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Salle:</label> 
+								<select name="salle" class="form-control btn btn-info">
+									<option th:each="s:${salles}" th:text="${s.name}+'::'+${s.cinema.name}+'::'+${s.cinema.ville.name}" class="form-control" th:value="${s.id_salle}"
+									th:selected="${projection.salle.name}" th:if="${mode=='edit'}"></option>
+									<option th:each="s:${salles}" th:text="${s.name}+'::'+${s.cinema.name}+'::'+${s.cinema.ville.name}" class="form-control" th:value="${s.id_salle}"
+									 th:if="${mode!='edit'}"></option>					
+								</select>
+							</div>
+<button class="btn btn-success" type="submit">Save</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+</body>
+</html>
